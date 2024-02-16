@@ -1,0 +1,99 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+
+$fontFamily: "Inter", sans-serif;
+$fontWeightBold: 700;
+$fontWeightNormal: 400;
+$fontStyleNormal: normal;
+$greenColor: #0A6C52;
+$grayColor: #344054;
+
+.create-account-component{
+    margin: 0;
+    display: flex;
+    width: 100%;
+    height: 100vh;
+    border: 1px solid black;
+    font-family: $fontFamily;
+    font-style: $fontStyleNormal;
+}
+
+.left-hero{
+    width: 50%;
+    border: 1px solid black;
+}
+
+.right-personal-info{
+    width: 50%;
+    border: 1px solid black;
+    padding: 30px 40px;
+}
+
+.top-section{
+    display: flex;
+    justify-content: space-between;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 20px;
+    border: 1px solid black;
+}
+
+.left{
+    display: flex;
+}
+
+.right{
+    font-weight: $fontWeightNormal;
+}
+
+.login-green{
+    font-weight: 600;
+    color: $greenColor;
+}
+
+.arr-bck{
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.form-section{
+    display: flex;
+    margin-top: 50px;
+    border: 1px solid black;
+}
+
+.left-stepper{
+    display: flex;
+    flex-direction: column;
+    margin-right: 8%;
+  
+}
+
+.right-form-container{
+    width: 75%;
+}
+
+.step-line-1, .step-line-2, .step-line-3{
+    border: 1px solid  #EAECF0;
+    color: #EAECF0;
+    height: 80px;
+    width: 1px;
+    margin: 0px auto;
+    background-color: #EAECF0;
+}
+.step-line-1-green, .step-line-2-green, .step-line-3-green{
+    border: 1px solid  #0E9874;
+    color: #0E9874;
+    height: 80px;
+    width: 1px;
+    margin: 0px auto;
+    background-color: #0E9874;
+}
+
+.header-text{
+    display: flex;
+    justify-content: start;
+    font-weight: $fontWeightBold;
+    font-size: 30px;
+    line-height: 38px;
+    color: $grayColor;
+}

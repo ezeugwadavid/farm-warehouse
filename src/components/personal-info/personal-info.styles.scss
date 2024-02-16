@@ -1,0 +1,265 @@
+$greenColor: #0A6C52;
+$grayColor: #344054;
+$borderColor: #D0D5DD;
+$fontWeightNormal: 400;
+
+.personal-info {
+    margin-top: 20px;
+}
+
+.header-desc {
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 28px;
+    color: $grayColor;
+}
+
+.name-input {
+    margin: 20px 0px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.left-name-input {
+    width: 49%;
+}
+
+.right-name-input {
+    width: 49%;
+}
+
+.input-label {
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 20px;
+    color: $grayColor;
+}
+
+.phone {
+    margin-bottom: 20px;
+}
+
+.phone-input {
+    display: flex;
+    justify-content: space-between;
+}
+
+.flag-cont {
+    width: 8%;
+    height: 90%;
+    border: 1px solid $borderColor;
+    padding: 5px 6px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    margin: auto 0px;
+}
+
+.mobile {
+    width: 88%;
+}
+
+.ng-flag {
+    width: 30px;
+    height: 30px;
+}
+
+.arr-dwn {
+    width: 10px;
+    height: 10px;
+    margin: auto auto;
+}
+
+.email-input {
+    margin: 20px 0px;
+}
+
+.optional {
+    font-weight: $fontWeightNormal;
+    font-size: 14px;
+    line-height: 20px;
+    font-style: italic;
+}
+
+.age-gender {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    width: 80%;
+}
+
+.age-section {
+    width: 20%;
+    cursor: pointer;
+}
+
+.gender-section {
+    width: 75%;
+}
+
+.radio-section {
+    display: flex;
+    margin-top: 5px;
+}
+
+.male {
+    display: flex;
+    margin-right: 20px;
+}
+
+.female {
+    display: flex;
+}
+
+.male-text,
+.female-text {
+    font-size: 14px;
+    font-weight: 500;
+    color: $grayColor;
+    line-height: 20px;
+    margin-left: 5px;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.address-input {
+    margin-bottom: 20px;
+}
+
+.site-input {
+    cursor: pointer;
+    margin-bottom: 20px;
+}
+
+.id-type-input {
+    margin-bottom: 20px;
+}
+
+.id-number-input {
+    margin-bottom: 20px;
+}
+
+.upload-doc {
+    margin-bottom: 20px;
+}
+
+.upload-cont {
+    display: flex;
+    padding: 15px;
+    border: 1px solid #EAECF0;
+    border-radius: 12px;
+    margin-top: 5px;
+}
+
+.upload-box {
+    margin-right: 20px;
+    border: 1px solid $borderColor;
+    padding: 10px;
+    border-radius: 8px;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 20px;
+    cursor: pointer;
+}
+
+.doc-name {
+    margin: auto 0px;
+    font-weight: $fontWeightNormal;
+    font-size: 14px;
+    line-height: 20px;
+    color: #101828;
+
+}
+
+.password-1 {
+    margin-bottom: 20px;
+}
+
+.password-2 {
+    margin-bottom: 5px;
+}
+
+.error-icon {
+    margin-right: 5px;
+}
+
+.val-check {
+    display: flex;
+    margin-bottom: 10px;
+}
+
+.text-normal {
+    font-weight: $fontWeightNormal;
+    font-size: 14px;
+    line-height: 20px;
+    color: #475467;
+}
+
+.text-red {
+    font-weight: $fontWeightNormal;
+    font-size: 14px;
+    line-height: 20px;
+    color: #F04438;
+}
+
+.avatar-upload {
+    margin-top: 20px;
+}
+
+.upload-content {
+    display: flex;
+    margin-top: 10px;
+    margin-bottom: 20px;
+
+}
+
+.avatar {
+    background-color: #F2F4F7;
+    padding: 10px;
+    border-radius: 50%;
+    margin-right: 15px;
+}
+
+.upload-icon {
+    width: 20px;
+    height: 20px;
+    margin-right: 5px;
+}
+
+.upload-btn {
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+    border: 1px solid $borderColor;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.upload-text {
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 20px;
+    color: $grayColor;
+}
+
+.upload-desc {
+    margin-top: 5px;
+    font-size: 12px;
+    font-weight: $fontWeightNormal;
+    line-height: 18px;
+    color: #475467;
+}
+
+.btn {
+    display: flex;
+    margin-top: 20px;
+}
+
+.btn-bck {
+    margin-right: 30px;
+    width: 20%;
+}
+.btn-continue {
+    margin-right: 30px;
+    width: 20%;
+}

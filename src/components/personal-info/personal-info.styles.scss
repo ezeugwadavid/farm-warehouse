@@ -256,10 +256,124 @@ $fontWeightNormal: 400;
 }
 
 .btn-bck {
-    margin-right: 30px;
+    margin-right: 10%;
     width: 20%;
 }
+
 .btn-continue {
-    margin-right: 30px;
     width: 20%;
 }
+
+@media screen and (max-width: 768px) {
+    age-gender {
+        margin-bottom: 20px;
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+    }
+
+    .age-section {
+        width: 35%;
+        cursor: pointer;
+        margin-right: 10%;
+    }
+
+    .gender-section {
+        width: 58%;
+    }
+
+    .flag-cont {
+        padding: 10px 10px;
+        margin-top: auto;
+        margin-bottom: auto;
+        margin-right: 8px;
+    }
+
+    .upload-box {
+        font-size: 12px;
+        margin-right: 10px;
+    }
+
+
+    .ng-flag {
+        width: 20px;
+        height: 20px;
+        margin-right: 2px;
+    }
+
+    .arr-dwn {
+        width: 8px;
+        height: 8px;
+        margin: auto auto;
+    }
+
+    .doc-name {
+        font-size: 12px;
+    }
+
+
+    .btn-bck {
+        margin-right: 15%;
+        width: 35%;
+    }
+
+    .btn-continue {
+        width: 35%;
+    }
+
+    .text-normal {
+        font-size: 12px;
+    }
+
+    .text-red {
+        font-size: 12px;
+    }
+
+    .error-icon {
+        width: 15px;
+        height: 15px;
+    }
+}
+
+;
+
+@media screen and (min-width: 768px) and (max-width: 1200px) {
+    age-gender {
+        margin-bottom: 20px;
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+    }
+
+    .age-section {
+        width: 30%;
+        cursor: pointer;
+        margin-right: 10%;
+    }
+
+    .gender-section {
+        width: 58%;
+    }
+
+    .flag-cont {
+        padding: 10px 10px;
+        margin-top: auto;
+        margin-bottom: auto;
+        margin-right: 8px;
+    }
+
+    .ng-flag {
+        width: 20px;
+        height: 20px;
+        margin-right: 2px;
+    }
+
+    .arr-dwn {
+        width: 8px;
+        height: 8px;
+        margin: auto auto;
+    }
+
+}
+
+;

@@ -7,81 +7,91 @@ $fontStyleNormal: normal;
 $greenColor: #0A6C52;
 $grayColor: #344054;
 
-.create-account-component{
+.create-account-component {
     margin: 0;
     display: flex;
     width: 100%;
     height: 100vh;
-    border: 1px solid black;
     font-family: $fontFamily;
     font-style: $fontStyleNormal;
 }
 
-.left-hero{
+.left-hero {
     width: 50%;
-    border: 1px solid black;
 }
 
-.right-personal-info{
+.right-personal-info {
     width: 50%;
-    border: 1px solid black;
+    height: 100%;
     padding: 30px 40px;
 }
 
-.top-section{
+.top-section {
     display: flex;
     justify-content: space-between;
     font-weight: 500;
     font-size: 14px;
     line-height: 20px;
-    border: 1px solid black;
 }
 
-.left{
+.top-nav-desktop {
+    display: block;
+}
+
+.top-nav-mobile {
+    display: none;
+}
+
+
+
+.left {
     display: flex;
 }
 
-.right{
+.right {
     font-weight: $fontWeightNormal;
 }
 
-.login-green{
+.login-green {
     font-weight: 600;
     color: $greenColor;
 }
 
-.arr-bck{
+.arr-bck {
     margin-right: 10px;
     cursor: pointer;
 }
 
-.form-section{
+.form-section {
     display: flex;
     margin-top: 50px;
-    border: 1px solid black;
 }
 
-.left-stepper{
+.left-stepper {
     display: flex;
     flex-direction: column;
     margin-right: 8%;
-  
 }
 
-.right-form-container{
+.right-form-container {
     width: 75%;
 }
 
-.step-line-1, .step-line-2, .step-line-3{
-    border: 1px solid  #EAECF0;
+.step-line-1,
+.step-line-2,
+.step-line-3 {
+    border: 1px solid #EAECF0;
     color: #EAECF0;
     height: 80px;
     width: 1px;
     margin: 0px auto;
     background-color: #EAECF0;
 }
-.step-line-1-green, .step-line-2-green, .step-line-3-green{
-    border: 1px solid  #0E9874;
+
+.step-line-1-green,
+.step-line-2-green,
+.step-line-3-green {
+    border: 1px solid #0E9874;
     color: #0E9874;
     height: 80px;
     width: 1px;
@@ -89,11 +99,93 @@ $grayColor: #344054;
     background-color: #0E9874;
 }
 
-.header-text{
+.header-text {
     display: flex;
     justify-content: start;
     font-weight: $fontWeightBold;
     font-size: 30px;
     line-height: 38px;
     color: $grayColor;
+}
+
+@media screen and (max-width: 768px) {
+    .left-hero {
+        display: none;
+    }
+
+    .right-personal-info {
+        width: 100%;
+        height: 100%;
+        padding: 0px 0px;
+    }
+
+
+    .top-section-mobile {
+        display: flex;
+        justify-content: space-between;
+        padding: 20px 15px;
+    }
+
+    .top-nav-desktop {
+        display: none;
+    }
+
+    .top-nav-mobile {
+        display: block;
+        box-shadow: 0 0 2px 0px #101828;
+    }
+
+    .form-section {
+        display: flex;
+        flex-direction: column;
+        margin-top: 20px;
+        padding: 20px 15px;
+    }
+
+    .left-stepper {
+        display: flex;
+        justify-content: center;
+        flex-direction: row;
+        margin-right: 0%;
+        margin-bottom: 30px;
+    }
+
+    .right-form-container {
+        width: 100%;
+    }
+
+    .step-line-1,
+    .step-line-2,
+    .step-line-3 {
+        height: 0px;
+        width: 40px;
+        margin: auto 0px;
+    }
+
+    .step-line-1-green,
+    .step-line-2-green,
+    .step-line-3-green {
+        height: 0px;
+        width: 40px;
+        margin: auto 0px;
+    }
+
+
+    .nav-txt {
+        font-weight: 500;
+        font-size: 14px;
+        line-height: 20px;
+
+    }
+
+    .home-icon {
+        width: 16px;
+        height: 16px;
+        margin-right: 5px;
+    }
+
+    .right-nav {
+        display: flex;
+        margin: auto 0px;
+    }
 }

@@ -12,7 +12,6 @@ import Button from "../button/button.component";
 import PropTypes from "prop-types";
 
 const PersonalInfo = ({ handleNext, handleBack }) => {
-
   return (
     <div className="personal-info">
       <div className="header-desc">Personal Information</div>

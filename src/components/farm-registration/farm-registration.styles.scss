@@ -1,0 +1,85 @@
+$greenColor: #0A6C52;
+$grayColor: #344054;
+$borderColor: #D0D5DD;
+$fontWeightNormal: 400;
+$fontSizeNormal: 14px;
+$lineHeightNormal: 20px;
+
+@mixin text-important {
+    font-weight: 500;
+    line-height: $lineHeightNormal;
+    font-size: $fontSizeNormal;
+    color: $grayColor;
+}
+
+
+.farm-reg-container {
+    margin-top: 20px;
+}
+
+.farm-reg-header {
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 28px;
+    color: $grayColor;
+}
+
+.register-input-group {
+    margin-top: 20px;
+}
+
+.optional-reg {
+    @include text-important();
+    font-style: italic;
+    margin-left: 5px;
+}
+
+.coordinates-section {
+    display: flex;
+    justify-content: space-between;
+}
+
+.longitude-left {
+    width: 49%
+}
+
+.latitude-right {
+    width: 49%
+}
+
+.coordinate-text-sample {
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 18px;
+    color: #667085;
+    margin-top: 5px;
+}
+
+.farm-topic {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+    color: $grayColor;
+    margin-top: 20px;
+}
+
+.add-farm-container {
+    border-radius: 6px;
+    padding: 15px;
+    background-color: #F9FAFB;
+    margin-top: 10px;
+}
+
+.register-input-group-month {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.start-mnth {
+    width: 48%;
+}
+
+.end-mnth {
+    width: 48%;
+}

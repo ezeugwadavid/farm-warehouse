@@ -8,9 +8,9 @@ import "./input.styles.scss";
 // reuseable input component 
 const Input = ({ ...props }) => {
   // props e.g type, error, showIcon, iconName
-  const { type, error, showIcon, iconName, placeholder, readOnly } = props;
+  const { type, error, showIcon, iconName, placeholder, readOnly, handleClick } = props;
   return showIcon ? (
-    <div className="input">
+    <div className="input" onClick={() => handleClick()}>
       <input
         className={error ? "input-field-red" : "input-field"}
         type={type ? type : "text"}
@@ -34,7 +34,7 @@ const Input = ({ ...props }) => {
       </div>
     </div>
   ) : (
-    <div className="input">
+    <div className="input" onClick={() => handleClick()}>
       <input
         className={error ? "input-field-red" : "input-field"}
         type={type ? type : "text"}

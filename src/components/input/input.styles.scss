@@ -4,14 +4,14 @@ $fontFamily: "Inter", sans-serif;
 }
 
 .input-field::-ms-input-placeholder { /* Edge 12-18 */
-  color: #101828;
+  color: #667085;
   font-weight: 500;
   font-size: 16px;
   line-height: 24px;
 }
 
 .input-field::placeholder {
-  color: #101828;
+  color: #667085;
   font-weight: 500;
   font-size: 16px;
   line-height: 24px;
@@ -80,6 +80,7 @@ input[type="radio"]:checked {
 
 .icon-cover {
   position: relative;
+  cursor: pointer;
 }
 
 .input-icon {

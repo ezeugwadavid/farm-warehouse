@@ -1,0 +1,112 @@
+$greenColor: #0A6C52;
+$grayColor: #344054;
+$borderColor: #D0D5DD;
+$fontWeightNormal: 400;
+$fontSizeNormal: 14px;
+$lineHeightNormal: 20px;
+
+@mixin text-important {
+    font-weight: 500;
+    line-height: $lineHeightNormal;
+    font-size: $fontSizeNormal;
+    color: $grayColor;
+}
+
+.fingerprint-container {
+    margin-top: 20px;
+}
+
+.fingerprint-header {
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 28px;
+    color: $grayColor;
+}
+
+.finger-print-box{
+    width: 70%;
+}
+
+.optional-italic{
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 28px;
+    color: $grayColor;
+    font-style: italic;
+}
+
+.box-header{
+    @include text-important();
+    margin-top: 25px;
+    margin-bottom: 10px;
+}
+
+.thumb-section{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.thumb-item{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.thumb-text{
+    font-weight: $fontWeightNormal;
+    font-size: $fontSizeNormal;
+    line-height: $lineHeightNormal;
+    color: $grayColor;
+    margin-top: 5px;
+}
+
+.thumb-info{
+    display: flex;
+    background-color: #FEF0C7;
+    border-radius: 8px;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+.thumb-info-text{
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 18px;
+    color: #B54708;
+}
+
+.info-icon{
+    margin-bottom: auto;
+    margin-right: 5px;
+}
+
+.skip-box{
+    display: flex;
+    border: 1px solid #D0D5DD;
+    border-radius: 6px;
+    padding: 8px 14px 8px 14px;
+    display: flex;
+    justify-content: space-between;
+    width: 25%;
+    margin-left: auto;
+}
+
+.skip-text{
+    @include text-important();
+}
+
+.btn-section-fingerprint{
+    display: flex;
+    justify-content: start;
+    margin-top: 30px;
+}
+
+.fingerprint-bck{
+    width: 30%;
+    margin-right: 15%;
+}
+.fingerprint-forward{
+    width: 30%;
+}

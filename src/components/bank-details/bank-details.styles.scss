@@ -1,0 +1,139 @@
+$greenColor: #0A6C52;
+$grayColor: #344054;
+$borderColor: #D0D5DD;
+$fontWeightNormal: 400;
+$fontSizeNormal: 14px;
+$lineHeightNormal: 20px;
+
+@mixin text-important {
+    font-weight: 500;
+    line-height: $lineHeightNormal;
+    font-size: $fontSizeNormal;
+    color: $grayColor;
+}
+
+
+.bank-details-container {
+    margin-top: 20px;
+}
+
+.bank-details-header {
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 28px;
+    color: $grayColor;
+}
+
+.question-text {
+    font-weight: 500;
+    line-height: $lineHeightNormal;
+    font-size: $fontSizeNormal;
+    color: $grayColor;
+    margin-top: 20px;
+
+}
+
+.response-section {
+    display: flex;
+    margin-top: 5px;
+}
+
+.yes {
+    display: flex;
+    margin-right: 15px;
+}
+
+.res-text {
+    @include text-important();
+    margin: auto 0px;
+}
+
+.no {
+    display: flex;
+}
+
+.radio {
+    margin-right: 5px;
+}
+
+.btn-section {
+    display: flex;
+    margin-top: 20px;
+}
+
+.white-btn {
+    margin-right: 10%;
+    width: 20%;
+}
+
+.green-btn {
+    width: 20%;
+}
+
+.bank-details-inputs {
+    margin-top: 20px;
+    width: 57%;
+}
+
+.input-group {
+    margin-top: 10px;
+}
+
+.check-mark {
+    display: none;
+}
+
+.input-drop-down {
+    border-radius: 8px;
+    border: 1px solid #EAECF0;
+    box-shadow: 0 0 1.3px 1.3px #EAECF0;
+    margin-top: 5px;
+    padding: 5px 5px;
+    z-index: -1;
+    max-height: 200px;
+    overflow-y: scroll;
+}
+
+::-webkit-scrollbar {
+    width: 7px;
+    background: #ffffff;
+}
+
+/* Handle */
+.input-drop-down::-webkit-scrollbar-thumb {
+    background-color: #EAECF0;
+    border-radius: 8px;
+}
+
+.input-item {
+    display: flex;
+    justify-content: space-between;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.input-item:hover {
+    background-color: #F9FAFB;
+    border-radius: 6px;
+
+    .check-mark {
+        display: block;
+    }
+}
+
+.account-name-verify-text {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    color: #0E9874;
+}
+
+.account-name-verify-text-error {
+    color: #F04438;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+}

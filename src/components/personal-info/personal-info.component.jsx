@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./personal-info.styles.scss";
 import NgFlag from "../../assets/ng.svg";
 import ArrowDownSm from "../../assets/arrow-down-sm.svg";
@@ -12,6 +12,19 @@ import Button from "../button/button.component";
 import PropTypes from "prop-types";
 
 const PersonalInfo = ({ handleNext, handleBack }) => {
+  const [selectedFile, setSelectedFile] = useState("");
+  const [selectedAvatar, setSelectedAvatar] = useState("");
+  const [image, setImage] = useState(null);
+
+  const onFileChange = (e) => {
+    setSelectedFile(e.target.files[0]);
+  };
+
+  const onAvatarSelect = (e) => {
+    setSelectedAvatar(e.target.files[0]);
+    setImage(URL.createObjectURL(e.target.files[0]));
+  };
+
   return (
     <div className="personal-info">
       <div className="header-desc">Personal Information</div>
@@ -100,8 +113,19 @@ const PersonalInfo = ({ handleNext, handleBack }) => {
           <div className="input-label">Upload ID document</div>
 
           <div className="upload-cont">
-            <div className="upload-box">Choose file</div>
-            <div className="doc-name">IDcard3_compressed.pdf</div>
+            <label for="file-upload" className="upload-box">
+              Choose file{" "}
+              <span>
+                <input
+                  id="file-upload"
+                  type="file"
+                  onChange={(e) => onFileChange(e)}
+                />
+              </span>
+            </label>
+            <div className="doc-name">
+              {selectedFile !== "" ? selectedFile.name : "No file chosen"}
+            </div>
           </div>
         </div>
 
@@ -150,10 +174,23 @@ const PersonalInfo = ({ handleNext, handleBack }) => {
             Upload Profile picture <span className="optional">(Optional)</span>
           </div>
           <div className="upload-content">
-            <img className="avatar" src={UserIcon} alt="" />
+            <img
+              className="avatar"
+              src={image !== null ? image : UserIcon}
+              alt=""
+            />
             <div className="upload-btn">
               <img className="upload-icon" src={UploadIcon} alt="" />
-              <div className="upload-text">Upload picture</div>
+              <label for="avatar-upload" className="upload-text">
+                Upload picture
+              </label>
+              <span>
+                <input
+                  id="avatar-upload"
+                  type="file"
+                  onChange={(e) => onAvatarSelect(e)}
+                />
+              </span>
             </div>
           </div>
         </div>

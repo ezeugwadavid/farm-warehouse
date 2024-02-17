@@ -8,6 +8,9 @@ import HomeIcon from "../../assets/home-icon.svg";
 import LeftImage from "../left-image/left-image.component";
 import "./create-account-component.styles.scss";
 import PersonalInfo from "../personal-info/personal-info.component";
+import BankDetails from "../bank-details/bank-details.component";
+import FingerprintReg from "../fingerprint-reg/fingerprint-reg.component";
+import FarmRegistration from "../farm-registration/farm-registration.component";
 
 const CreateAccountComponent = () => {
   const [activeStep, setActiveStep] = React.useState(0);
@@ -38,7 +41,7 @@ const CreateAccountComponent = () => {
             </div>
             <div className="right">
               Already have an account?{" "}
-              <span onClick={() => handleNext()} className="login-green">
+              <span className="login-green">
                 Log in
               </span>
             </div>
@@ -58,6 +61,7 @@ const CreateAccountComponent = () => {
         </div>
 
         <div className="form-section">
+          {/* stepper */}
           <div className="left-stepper">
             <img
               className="step-head-1"
@@ -116,7 +120,7 @@ const CreateAccountComponent = () => {
 
           <div className="right-form-container">
             <div className="header-text">Create Account</div>
-
+             {/* conditionally rendered components as user clicks button */}
             <div className="form-components">
               {activeStep === 0 ? (
                 <PersonalInfo
@@ -124,11 +128,12 @@ const CreateAccountComponent = () => {
                   handleBack={handleBack}
                 />
               ) : activeStep === 1 ? (
-                <div>under development</div>
+                <BankDetails  handleNext={() => handleNext()}
+                handleBack={handleBack} />
               ) : activeStep === 2 ? (
-                <div>2</div>
+                <FingerprintReg handleNext={() => handleNext()} handleBack={handleBack} />
               ) : activeStep === 3 ? (
-                <div>3</div>
+                <FarmRegistration />
               ) : (
                 <PersonalInfo />
               )}

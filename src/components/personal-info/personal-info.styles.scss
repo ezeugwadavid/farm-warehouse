@@ -254,15 +254,16 @@ $fontWeightNormal: 400;
 .btn-sec {
     display: flex;
     margin-top: 20px;
+    width: 65%;
 }
 
 .btn-bck {
-    margin-right: 10%;
-    width: 20%;
+    margin-right: 5% !important;
+    width: 40% !important;
 }
 
 .btn-continue {
-    width: 20%;
+    width: 40% !important;
 }
 
 input[type="file"] {
@@ -387,9 +388,21 @@ input[type="file"] {
         width: 15px;
         height: 15px;
     }
-}
+};
 
-;
+@media screen and (max-width: 340px) {
+    .flag-cont {
+        padding: 10px 10px;
+        margin-top: auto;
+        margin-bottom: auto;
+        margin-right: 7px;
+        width: 20%;
+    }
+
+    .btn-sec{
+        width: 100%;
+    }
+}
 
 @media screen and (min-width: 768px) and (max-width: 1200px) {
     .age-gender {
@@ -414,6 +427,7 @@ input[type="file"] {
         margin-top: auto;
         margin-bottom: auto;
         margin-right: 8px;
+        width: 20%;
     }
 
     .ng-flag {
@@ -428,6 +442,26 @@ input[type="file"] {
         margin: auto auto;
     }
 
-}
+};
 
-;
+@media screen and (min-width: 768px) and (max-width: 1200px) {
+    .btn-sec{
+        width: 100%;
+    }
+};
+
+@media screen and (min-width: 1200px) and (max-width: 1800px) {
+    .flag-cont {
+        padding: 7px 10px;
+        margin-top: auto;
+        margin-bottom: auto;
+        margin-right: 8px;
+        width: 20%;
+    }
+
+    .age-section {
+        width: 33%;
+        cursor: pointer;
+        margin-right: 10%;
+    }
+}

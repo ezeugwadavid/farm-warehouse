@@ -89,7 +89,7 @@ $lineHeightNormal: 20px;
     background-color: #E7F5F1;
     padding: 6px 8px 6px 8px;
     display: flex;
-    width: 25%;
+    width: 130px;
     margin-top: 20px;
     cursor: pointer;
 }
@@ -198,3 +198,40 @@ $lineHeightNormal: 20px;
     color: #475467;
     cursor: pointer;
 }
+
+.btn-sections{
+    display: flex;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.white-but{
+    width: 40% !important;
+    margin-right: 5% !important;
+}
+
+.green-but{
+    width: 40% !important;
+}
+
+@media screen and (max-width: 768px) {
+    
+    .anothercrop-btn {
+        border-radius: 8px;
+        background-color: #E7F5F1;
+        padding: 6px 8px 6px 8px;
+        display: flex;
+        width: 120px;
+        margin-top: 20px;
+        cursor: pointer;
+    }
+
+}
+@media screen and (max-width: 450px) {
+    
+    .anothercrop-btn {
+        width: 120px;
+    }
+
+}
+

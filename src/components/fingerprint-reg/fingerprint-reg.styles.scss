@@ -23,11 +23,11 @@ $lineHeightNormal: 20px;
     color: $grayColor;
 }
 
-.finger-print-box{
+.finger-print-box {
     width: 70%;
 }
 
-.optional-italic{
+.optional-italic {
     font-weight: 500;
     font-size: 18px;
     line-height: 28px;
@@ -35,26 +35,26 @@ $lineHeightNormal: 20px;
     font-style: italic;
 }
 
-.box-header{
+.box-header {
     @include text-important();
     margin-top: 25px;
     margin-bottom: 10px;
 }
 
-.thumb-section{
+.thumb-section {
     display: flex;
     justify-content: space-between;
     margin-bottom: 20px;
 }
 
-.thumb-item{
+.thumb-item {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
-.thumb-text{
+.thumb-text {
     font-weight: $fontWeightNormal;
     font-size: $fontSizeNormal;
     line-height: $lineHeightNormal;
@@ -62,7 +62,7 @@ $lineHeightNormal: 20px;
     margin-top: 5px;
 }
 
-.thumb-info{
+.thumb-info {
     display: flex;
     background-color: #FEF0C7;
     border-radius: 8px;
@@ -70,44 +70,72 @@ $lineHeightNormal: 20px;
     margin-bottom: 20px;
 }
 
-.thumb-info-text{
+.thumb-info-text {
     font-weight: 400;
     font-size: 12px;
     line-height: 18px;
     color: #B54708;
 }
 
-.info-icon{
+.info-icon {
     margin-bottom: auto;
     margin-right: 5px;
 }
 
-.skip-box{
+.skip-box {
     display: flex;
     border: 1px solid #D0D5DD;
     border-radius: 6px;
     padding: 8px 14px 8px 14px;
     display: flex;
     justify-content: space-between;
-    width: 25%;
+    width: 150px !important;
     margin-left: auto;
     cursor: pointer;
 }
 
-.skip-text{
+.skip-text {
     @include text-important();
 }
 
-.btn-section-fingerprint{
+.btn-section-fingerprint {
     display: flex;
     justify-content: start;
     margin-top: 30px;
 }
 
-.fingerprint-bck{
-    width: 30%;
-    margin-right: 15%;
+.fingerprint-bck {
+    width: 40% !important;
+    margin-right: 5% !important;
 }
-.fingerprint-forward{
-    width: 30%;
+
+.fingerprint-forward {
+    width: 40% !important;
+}
+
+@media screen and (max-width: 768px) {
+    .finger-print-box {
+        width: 100%;
+    }
+    
+    .skip-box{
+        width: 150px !important;
+    }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1700px) {
+    .finger-print-box {
+        width: 100%;
+    }
+
+    .skip-box {
+        width: 60%;
+    }
+
+}
+
+@media screen and (min-width: 1000px) and (max-width: 1700px) {
+    .skip-box {
+        width: 45%;
+    }
 }

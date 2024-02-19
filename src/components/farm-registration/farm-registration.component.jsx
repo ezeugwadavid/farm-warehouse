@@ -453,26 +453,26 @@ const FarmRegistration = ({ handleBack }) => {
       {/* shows enabled button if form requirements are met */}
 
       {farmDetails.farmname.trim().length === 0 ? (
-        <div className="btn-section">
-          <div className="white-btn">
+        <div className="btn-sections">
+          <div className="white-but">
             <Button disable={false} handleClick={handleBack} type="back">
               Back
             </Button>
           </div>
-          <div classN ame="green-btn">
+          <div classN ame="green-but">
             <Button disable={true} handleClick={() => {}} type="continue">
               Add Farm
             </Button>
           </div>
         </div>
       ) : cropInputs.length === 0 ? (
-        <div className="btn-section">
-          <div className="white-btn">
+        <div className="btn-sections">
+          <div className="white-but">
             <Button disable={false} handleClick={handleBack} type="back">
               Back
             </Button>
           </div>
-          <div classN ame="green-btn">
+          <div classN ame="green-but">
             <Button disable={true} handleClick={() => {}} type="continue">
               Add Farm
             </Button>
@@ -480,12 +480,12 @@ const FarmRegistration = ({ handleBack }) => {
         </div>
       ) : (
         <div className="btn-section">
-          <div className="white-btn">
+          <div className="white-but">
             <Button disable={false} handleClick={handleBack} type="back">
               Back
             </Button>
           </div>
-          <div className="green-btn">
+          <div className="green-but">
             <Button disable={false} handleClick={registerFarm} type="continue">
               Add Farm
             </Button>

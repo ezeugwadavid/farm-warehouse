@@ -172,7 +172,7 @@ const BankDetails = ({ handleNext, handleBack }) => {
             )}
           </div>
 
-          <div className="input-group">
+          <div className="input-grp">
             <div className="input-lable">Personal Bank Account Number*</div>
             <Input
               readOnly={false}
@@ -192,7 +192,7 @@ const BankDetails = ({ handleNext, handleBack }) => {
       )}
 
       {/* buttons */}
-      <div className="btn-section">
+      <div className="btn-sections">
         <div className="white-btn">
           <Button disable={false} handleClick={handleBack} type="back">
             Back

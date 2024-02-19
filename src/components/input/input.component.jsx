@@ -8,7 +8,7 @@ import "./input.styles.scss";
 // reuseable input component 
 const Input = ({ ...props }) => {
   // props e.g type, error, showIcon, iconName
-  const { type, error, showIcon, iconName, placeholder, readOnly, handleClick } = props;
+  const { type, error, showIcon, iconName, placeholder, readOnly, handleClick, value, name, handleChange, checked } = props;
   return showIcon ? (
     <div className="input" onClick={() => handleClick()}>
       <input
@@ -16,6 +16,9 @@ const Input = ({ ...props }) => {
         type={type ? type : "text"}
         placeholder={placeholder}
         readOnly={readOnly}
+        value={value}
+        onChange={(e) => handleChange(e)}
+        name={name}
       />
       <div className="icon-cover">
         <img
@@ -40,6 +43,10 @@ const Input = ({ ...props }) => {
         type={type ? type : "text"}
         placeholder={placeholder}
         readOnly={readOnly}
+        value={value}
+        onChange={(e) => handleChange(e)}
+        name={name}
+        checked={checked}
       />
     </div>
   );

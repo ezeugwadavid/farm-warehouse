@@ -1,0 +1,35 @@
+.house-farm{
+    width: 100px;
+    height: 100px;
+    margin: 10px auto;
+}
+.modal-cont{
+    background-color: #FFFFFF;
+    border-radius: 6px;
+    padding: 30px 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+}
+
+.modal-text-header{
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 32px;
+    color: #344054;
+    margin: 10px auto;
+}
+
+.modal-text-para{
+    color: #344054;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    margin-bottom: 25px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.yes-btn{
+    margin-top: 15px;
+}

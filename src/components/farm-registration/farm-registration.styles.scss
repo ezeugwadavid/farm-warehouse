@@ -83,3 +83,118 @@ $lineHeightNormal: 20px;
 .end-mnth {
     width: 48%;
 }
+
+.anothercrop-btn {
+    border-radius: 8px;
+    background-color: #E7F5F1;
+    padding: 6px 8px 6px 8px;
+    display: flex;
+    width: 25%;
+    margin-top: 20px;
+    cursor: pointer;
+}
+
+.another-text {
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 20px;
+    color: #0A6C52;
+    margin-left: 5px;
+}
+
+.doc-text {
+    @include text-important();
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.drop-area {
+    border: 1px solid #EAECF0;
+    padding: 16px 24px 16px 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.drop-info {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    color: #475467;
+    margin: 20px 0px;
+}
+
+.info-green {
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 20px;
+    color: #0E9874;
+}
+
+.file-type {
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 18px;
+    color: #475467;
+}
+
+.file-upload-cont {
+    margin-top: 20px;
+    border: 1px solid #EAECF0;
+    border-radius: 12px;
+    padding: 16px;
+}
+
+.file-details {
+    display: flex;
+    justify-content: space-between;
+}
+
+.name-doc {
+    display: flex;
+}
+
+.filename {
+    margin-left: 5px;
+    margin-top: auto;
+    margin-bottom: auto;
+    @include text-important();
+}
+
+.file-size {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    color: #475467;
+    margin-bottom: 15px;
+}
+
+.progress-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.progress-text {
+    @include text-important();
+}
+
+.crop-action-cont {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 0px;
+}
+
+.crop-no {
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 18px;
+    color: #667085;
+}
+
+.close {
+    width: 15px;
+    height: 10px;
+    color: #475467;
+    cursor: pointer;
+}

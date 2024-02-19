@@ -5,11 +5,40 @@ import Input from "../input/input.component";
 import Button from "../button/button.component";
 import PropTypes from "prop-types";
 
-const BankDetails = ({ handleNext, handleBack}) => {
+// get user bank details component
+const BankDetails = ({ handleNext, handleBack }) => {
   const [showDropDown, setShowDropDown] = useState(false);
+  const [bankName, setBankName] = useState("");
+
+  const bankDetails = {
+    hasBankAccount: "true",
+    hasSmartphone: "true",
+    accountnumber: "",
+    bankname: "",
+  };
+
+  const [bankCredentials, setBankCredentials] = useState(bankDetails);
+
+  const handleBankDetailsChange = (e) => {
+    const { name, value } = e.target;
+    setBankCredentials({ ...bankCredentials, [name]: value });
+  };
+
+  const saveBankDetails = () => {
+    if (!bankCredentials.bankname.trim().length > 0) return;
+    if (!bankCredentials.accountnumber.trim().length > 3) return;
+    localStorage.setItem("bankDetails", JSON.stringify(bankCredentials));
+    handleNext();
+  };
 
   const handleShowDropDown = () => {
     setShowDropDown((prevDropDown) => !prevDropDown);
+  };
+
+  const addBankName = (name) => {
+    setBankName(name);
+    setBankCredentials({ ...bankCredentials, bankname: name });
+    handleShowDropDown();
   };
 
   return (
@@ -23,7 +52,13 @@ const BankDetails = ({ handleNext, handleBack}) => {
         <div className="response-section">
           <div className="yes">
             <div className="radio">
-              <Input type="radio" />
+              <Input
+                type="radio"
+                value="true"
+                name="hasSmartphone"
+                handleChange={handleBankDetailsChange}
+                checked={bankCredentials.hasSmartphone === "true"}
+              />
             </div>
 
             <div className="res-text">Yes</div>
@@ -31,7 +66,13 @@ const BankDetails = ({ handleNext, handleBack}) => {
 
           <div className="no">
             <div className="radio">
-              <Input type="radio" />
+              <Input
+                type="radio"
+                value="false"
+                name="hasSmartphone"
+                handleChange={handleBankDetailsChange}
+                checked={bankCredentials.hasSmartphone === "false"}
+              />
             </div>
 
             <div className="res-text">No</div>
@@ -46,7 +87,13 @@ const BankDetails = ({ handleNext, handleBack}) => {
         <div className="response-section">
           <div className="yes">
             <div className="radio">
-              <Input type="radio" />
+              <Input
+                type="radio"
+                name="hasBankAccount"
+                value="true"
+                handleChange={handleBankDetailsChange}
+                checked={bankCredentials.hasBankAccount === "true"}
+              />
             </div>
 
             <div className="res-text">Yes</div>
@@ -54,7 +101,13 @@ const BankDetails = ({ handleNext, handleBack}) => {
 
           <div className="no">
             <div className="radio">
-              <Input type="radio" />
+              <Input
+                type="radio"
+                name="hasBankAccount"
+                value="false"
+                handleChange={handleBankDetailsChange}
+                checked={bankCredentials.hasBankAccount === "false"}
+              />
             </div>
 
             <div className="res-text">No</div>
@@ -63,38 +116,80 @@ const BankDetails = ({ handleNext, handleBack}) => {
       </div>
 
       {/* inputs */}
-      <div className="bank-details-inputs">
-        <div className="input-group">
-          <div className="input-lable">Bank Name*</div>
-          <Input
-            readOnly={true}
-            showIcon={true}
-            iconName="DownArrow"
-            placeholder="GT Bank"
-            handleClick={handleShowDropDown}
-          />
+      {bankCredentials.hasBankAccount === "true" ? (
+        <div className="bank-details-inputs">
+          <div className="input-grp">
+            <div className="input-lable">Bank Name*</div>
+            <Input
+              readOnly={true}
+              showIcon={true}
+              value={bankName}
+              iconName="DownArrow"
+              placeholder="GT Bank"
+              handleClick={handleShowDropDown}
+            />
 
-          {showDropDown ? (
-            <div className="input-drop-down">
-              <div className="input-item">
-                <div className="bank-name">Guruanty Trust Bank</div>
-                <img className="check-mark" src={Check} alt="" />
+            {showDropDown ? (
+              <div className="input-drop-down">
+                <div
+                  className="input-item"
+                  onClick={() => addBankName("Guruanty Trust Bank")}
+                >
+                  <div className="bank-name">Guruanty Trust Bank</div>
+                  <img className="check-mark" src={Check} alt="" />
+                </div>
+                <div
+                  className="input-item"
+                  onClick={() => addBankName("United Bank of Africa")}
+                >
+                  <div className="bank-name">United Bank of Africa</div>
+                  <img className="check-mark" src={Check} alt="" />
+                </div>
+                <div
+                  className="input-item"
+                  onClick={() => addBankName("Zenith Bank")}
+                >
+                  <div className="bank-name">Zenith Bank</div>
+                  <img className="check-mark" src={Check} alt="" />
+                </div>
+                <div
+                  className="input-item"
+                  onClick={() => addBankName("Access Bank")}
+                >
+                  <div className="bank-name">Access Bank</div>
+                  <img className="check-mark" src={Check} alt="" />
+                </div>
+                <div
+                  className="input-item"
+                  onClick={() => addBankName("First Bank")}
+                >
+                  <div className="bank-name">First Bank</div>
+                  <img className="check-mark" src={Check} alt="" />
+                </div>
               </div>
-            </div>
-          ) : (
-            ""
-          )}
-        </div>
-
-        <div className="input-group">
-          <div className="input-lable">Personal Bank Account Number*</div>
-          <Input readOnly={false} showIcon={false} placeholder="01234578" />
-          <div className="account-name-verify-text">
-            Account Name: Godwin Precious
+            ) : (
+              ""
+            )}
           </div>
-          {/* <div className="account-name-verify-text-error">Couldn't verify account number </div> */}
+
+          <div className="input-group">
+            <div className="input-lable">Personal Bank Account Number*</div>
+            <Input
+              readOnly={false}
+              showIcon={false}
+              placeholder="Enter account number"
+              name="accountnumber"
+              handleChange={handleBankDetailsChange}
+            />
+            {/* <div className="account-name-verify-text">
+          Account Name: Godwin Precious
+        </div> */}
+            {/* <div className="account-name-verify-text-error">Couldn't verify account number </div> */}
+          </div>
         </div>
-      </div>
+      ) : (
+        ""
+      )}
 
       {/* buttons */}
       <div className="btn-section">
@@ -103,17 +198,31 @@ const BankDetails = ({ handleNext, handleBack}) => {
             Back
           </Button>
         </div>
-        <div className="green-btn">
-          <Button disable={false} handleClick={handleNext} type="continue">
-            Continue
-          </Button>
-        </div>
+
+        {bankCredentials.bankname.trim().length > 0 &&
+        bankCredentials.accountnumber.trim().length > 3 ? (
+          <div className="green-btn">
+            <Button
+              disable={false}
+              handleClick={saveBankDetails}
+              type="continue"
+            >
+              Continue
+            </Button>
+          </div>
+        ) : (
+          <div className="green-btn">
+            <Button disable={true} handleClick={() => {}} type="continue">
+              Continue
+            </Button>
+          </div>
+        )}
       </div>
     </div>
   );
 };
 BankDetails.propTypes = {
-    handleNext: PropTypes.func,
-    handleBack: PropTypes.func,
-  };
+  handleNext: PropTypes.func,
+  handleBack: PropTypes.func,
+};
 export default BankDetails;

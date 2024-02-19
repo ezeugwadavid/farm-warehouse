@@ -133,9 +133,9 @@ const CreateAccountComponent = () => {
               ) : activeStep === 2 ? (
                 <FingerprintReg handleNext={() => handleNext()} handleBack={handleBack} />
               ) : activeStep === 3 ? (
-                <FarmRegistration />
+                <FarmRegistration handleBack={handleBack} />
               ) : (
-                <PersonalInfo />
+                ''
               )}
             </div>
           </div>

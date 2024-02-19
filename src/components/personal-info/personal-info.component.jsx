@@ -9,20 +9,128 @@ import UploadIcon from "../../assets/upload-icon.svg";
 import UserIcon from "../../assets/user-icon.svg";
 import Input from "../input/input.component";
 import Button from "../button/button.component";
+import Check from "../../assets/check.svg";
 import PropTypes from "prop-types";
 
-const PersonalInfo = ({ handleNext, handleBack }) => {
+ //get user personal info component
+const PersonalInfo = ({ handleNext }) => {
   const [selectedFile, setSelectedFile] = useState("");
-  const [selectedAvatar, setSelectedAvatar] = useState("");
   const [image, setImage] = useState(null);
+  const [showIdType, setShowIdType] = useState(false);
+  const [showAge, setShowAge] = useState(false);
+  const [showSite, setShowSite] = useState(false);
+  const [idType, setIdType] = useState("");
+  const [age, setAge] = useState("");
+  const [site, setSite] = useState("");
+
+  const userField = {
+    firstName: "",
+    lastName: "",
+    credential: "", // should be phone for farmers - you can see verification code in response
+    email: "", // optional
+    password: "", // must have >= 8 char, at least 1 CAPS, 1 lowercase, 1 number and 1 special char
+    password2: "", // must have >= 8 char, at least 1 CAPS, 1 lowercase, 1 number and 1 special char
+    roleName: "Farmer",
+    gender: "male", // Male / Female
+    resAddress: "",
+    ageGroup: "",
+    hasBankAccount: "",
+    hasSmartphone: true,
+    profilePic: "",
+    idUpload: {
+      idType: "",
+      url: "",
+    },
+    siteid: "",
+  };
+
+  const [userCredentials, setUserCredentials] = useState(userField);
+
+  const handleShowIdType = () => {
+    setShowIdType((prevIdtype) => !prevIdtype);
+  };
+  const handleShowAge = () => {
+    setShowAge((prevAge) => !prevAge);
+  };
+  const handleShowSite = () => {
+    setShowSite((prevSite) => !prevSite);
+  };
+
+  const handleIdType = (name) => {
+    setIdType(name);
+    setShowIdType((prevIdtype) => !prevIdtype);
+  };
+  const handleAge = (name) => {
+    setAge(name);
+    handleShowAge();
+    setUserCredentials({ ...userCredentials, ageGroup: name });
+  };
+  const handleSite = (name) => {
+    setSite(name);
+    handleShowSite();
+  };
 
   const onFileChange = (e) => {
     setSelectedFile(e.target.files[0]);
+    const getUrl = URL.createObjectURL(e.target.files[0]);
+    setUserCredentials({
+      ...userCredentials,
+      idUpload: { idType: idType, url: getUrl },
+    });
   };
 
   const onAvatarSelect = (e) => {
-    setSelectedAvatar(e.target.files[0]);
+    const avatarObj = e.target.files[0];
     setImage(URL.createObjectURL(e.target.files[0]));
+    setUserCredentials({ ...userCredentials, profilePic: avatarObj });
+  };
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setUserCredentials({ ...userCredentials, [name]: value });
+  };
+
+  const checkNumbers = (password) => {
+    let regex = /\d/g;
+    return regex.test(password);
+  };
+
+  const checkCapitalLetters = (password) => {
+    return /[A-Z]/.test(password);
+  };
+
+  const checkSpecialCharacters = (password) => {
+    const specialChars = /[`!@#$%^&*()_+\-=[\]{};':"\\|,.<>?~]/;
+    return specialChars.test(password);
+  };
+
+  const checkLowerCase = (password) => {
+    return /[a-z]/.test(password);
+  };
+
+  const checkAllInputs = () => {
+    if (!checkNumbers(userCredentials.password)) return;
+    if (!checkLowerCase(userCredentials.password)) return;
+    if (!checkCapitalLetters(userCredentials.password)) return;
+    if (!checkSpecialCharacters(userCredentials.password)) return;
+    if (!userCredentials.firstName.trim().length > 0) return;
+    if (!userCredentials.lastName.trim().length > 0) return;
+    if (!userCredentials.credential.trim().length > 0) return;
+    if (!userCredentials.resAddress.trim().length > 0) return;
+    if (!userCredentials.ageGroup.trim().length > 0) return;
+    if (!userCredentials.siteid.trim().length > 0) return;
+    if (!userCredentials.idUpload.idType.trim().length > 0) return;
+    if (!userCredentials.password.trim().length > 7) return;
+    if (userCredentials.password !== userCredentials.password2) return;
+    return true;
+  };
+
+  const handleSubmit = () => {
+    const auth = checkAllInputs();
+    if (auth) {
+      localStorage.setItem("userCred", JSON.stringify(userCredentials));
+      handleNext();
+    }
   };
 
   return (
@@ -32,26 +140,38 @@ const PersonalInfo = ({ handleNext, handleBack }) => {
       <div className="name-input">
         <div className="left-name-input">
           <div className="input-label">First Name*</div>
-          <Input />
+          <Input
+            name="firstName"
+            value={userCredentials.firstName}
+            handleChange={handleInputChange}
+          />
         </div>
 
         <div className="right-name-input">
           <div className="input-label">Last Name*</div>
-          <Input />
+          <Input
+            name="lastName"
+            value={userCredentials.lastName}
+            handleChange={handleInputChange}
+          />
         </div>
       </div>
 
       <div className="phone">
         <div className="input-label">Phone Number*</div>
 
-        <div className="phone-input">
+        <div className="phone-inpt">
           <div className="flag-cont">
             <img className="ng-flag" src={NgFlag} alt="" />
             <img className="arr-dwn" src={ArrowDownSm} alt="" />
           </div>
 
           <div className="mobile">
-            <Input />
+            <Input
+              name="credential"
+              value={userCredentials.credential}
+              handleChange={handleInputChange}
+            />
           </div>
         </div>
 
@@ -59,7 +179,11 @@ const PersonalInfo = ({ handleNext, handleBack }) => {
           <div className="input-label">
             Email address <span className="optional">(Optional)</span>
           </div>
-          <Input />
+          <Input
+            name="email"
+            value={userCredentials.email}
+            handleChange={handleInputChange}
+          />
         </div>
 
         <div className="age-gender">
@@ -69,20 +193,62 @@ const PersonalInfo = ({ handleNext, handleBack }) => {
               readOnly={true}
               showIcon={true}
               iconName="DownArrow"
-              placeholder="34"
+              placeholder="Age"
+              value={age}
+              handleClick={handleShowAge}
             />
+
+            {showAge ? (
+              <div className="input-drop-down-cont">
+                <div
+                  className="input-item"
+                  onClick={() => handleAge("18 - 25")}
+                >
+                  <div className="id-name">18 - 25</div>
+                  <img className="check-mark" src={Check} alt="" />
+                </div>
+                <div
+                  className="input-item"
+                  onClick={() => handleAge("26 - 30")}
+                >
+                  <div className="id-name">26 - 30</div>
+                  <img className="check-mark" src={Check} alt="" />
+                </div>
+                <div
+                  className="input-item"
+                  onClick={() => handleAge("31 - 35")}
+                >
+                  <div className="id-name">31 - 35</div>
+                  <img className="check-mark" src={Check} alt="" />
+                </div>
+              </div>
+            ) : (
+              ""
+            )}
           </div>
 
           <div className="gender-section">
             <div className="input-label">Choose Gender*</div>
             <div className="radio-section">
               <div className="male">
-                <Input type="radio" />
+                <Input
+                  type="radio"
+                  name="gender"
+                  value="male"
+                  handleChange={handleInputChange}
+                  checked={userCredentials.gender === "male"}
+                />
                 <div className="male-text">Male</div>
               </div>
 
               <div className="female">
-                <Input type="radio" />
+                <Input
+                  type="radio"
+                  name="gender"
+                  value="female"
+                  handleChange={handleInputChange}
+                  checked={userCredentials.gender === "female"}
+                />
                 <div className="female-text">Female</div>
               </div>
             </div>
@@ -91,22 +257,93 @@ const PersonalInfo = ({ handleNext, handleBack }) => {
 
         <div className="address-input">
           <div className="input-label">Residential address*</div>
-          <Input placeholder="No 21 Agaro road, Abeokuta" />
+          <Input
+            placeholder="Enter Address"
+            name="resAddress"
+            value={userCredentials.resAddress}
+            handleChange={handleInputChange}
+          />
         </div>
 
         <div className="site-input">
           <div className="input-label">Site*</div>
-          <Input readOnly={true} showIcon={true} placeholder="Ajegunle" />
+          <Input
+            readOnly={true}
+            showIcon={true}
+            placeholder="Ajegunle"
+            value={site}
+            handleClick={handleShowSite}
+          />
+          {showSite ? (
+            <div className="input-drop-down-cont">
+              <div
+                className="input-item"
+                onClick={() => handleSite("Maryland")}
+              >
+                <div className="id-name">Maryland</div>
+                <img className="check-mark" src={Check} alt="" />
+              </div>
+              <div className="input-item" onClick={() => handleSite("Ajah")}>
+                <div className="id-name">Ajah</div>
+                <img className="check-mark" src={Check} alt="" />
+              </div>
+              <div className="input-item" onClick={() => handleSite("Ikeja")}>
+                <div className="id-name">Ikeja</div>
+                <img className="check-mark" src={Check} alt="" />
+              </div>
+            </div>
+          ) : (
+            ""
+          )}
         </div>
 
         <div className="id-type-input">
           <div className="input-label">ID Type*</div>
-          <Input readOnly={true} showIcon={true} placeholder="Voter's card" />
+          <Input
+            readOnly={true}
+            showIcon={true}
+            handleClick={handleShowIdType}
+            value={idType}
+            placeholder="Select Id Type"
+          />
+
+          {showIdType ? (
+            <div className="input-drop-down-cont">
+              <div
+                className="input-item"
+                onClick={() => handleIdType("National ID card (NIN)")}
+              >
+                <div className="id-name">National ID card (NIN)</div>
+                <img className="check-mark" src={Check} alt="" />
+              </div>
+              <div
+                className="input-item"
+                onClick={() => handleIdType("Voter’s card")}
+              >
+                <div className="id-name">Voter’s card</div>
+                <img className="check-mark" src={Check} alt="" />
+              </div>
+              <div
+                className="input-item"
+                onClick={() => handleIdType("International Passport")}
+              >
+                <div className="id-name">International Passport</div>
+                <img className="check-mark" src={Check} alt="" />
+              </div>
+            </div>
+          ) : (
+            ""
+          )}
         </div>
 
         <div className="id-number-input">
           <div className="input-label">ID Number*</div>
-          <Input placeholder="102245" />
+          <Input
+            placeholder="Enter siteid"
+            name="siteid"
+            value={userCredentials.siteid}
+            handleChange={handleInputChange}
+          />
         </div>
 
         <div className="upload-doc">
@@ -136,7 +373,157 @@ const PersonalInfo = ({ handleNext, handleBack }) => {
             iconName="EyeOff"
             showIcon={true}
             placeholder=""
+            name="password"
+            value={userCredentials.password}
+            handleChange={handleInputChange}
           />
+
+          {/* show password guides dynamically */}
+
+          <div className="val-check">
+            <img
+              src={
+                !userCredentials.password.trim().length > 7
+                  ? Warning
+                  : userCredentials.password.trim().length > 7
+                  ? CheckIconGreen
+                  : userCredentials.password.trim().length === 0
+                  ? CheckIcon
+                  : Warning
+              }
+              alt=""
+              className="error-icon"
+            />
+            <div
+              className={
+                !userCredentials.password.trim().length > 7
+                  ? "text-red"
+                  : userCredentials.password.trim().length > 7
+                  ? "text-normal"
+                  : userCredentials.password.trim().length === 0
+                  ? "text-normal"
+                  : "text-red"
+              }
+            >
+              Must be at least 8 characters
+            </div>
+          </div>
+
+          <div className="val-check">
+            <img
+              src={
+                userCredentials.password.trim().length === 0
+                  ? CheckIcon
+                  : !checkSpecialCharacters(userCredentials.password)
+                  ? Warning
+                  : checkSpecialCharacters(userCredentials.password)
+                  ? CheckIconGreen
+                  : CheckIcon
+              }
+              alt=""
+              className="error-icon"
+            />
+            <div
+              className={
+                userCredentials.password.trim().length === 0
+                  ? "text-normal"
+                  : !checkSpecialCharacters(userCredentials.password)
+                  ? "text-red"
+                  : checkSpecialCharacters(userCredentials.password)
+                  ? "text-normal"
+                  : "text-normal"
+              }
+            >
+              Must contain one special character
+            </div>
+          </div>
+
+          <div className="val-check">
+            <img
+              src={
+                userCredentials.password.trim().length === 0
+                  ? CheckIcon
+                  : !checkNumbers(userCredentials.password)
+                  ? Warning
+                  : checkNumbers(userCredentials.password)
+                  ? CheckIconGreen
+                  : CheckIcon
+              }
+              alt=""
+              className="error-icon"
+            />
+            <div
+              className={
+                userCredentials.password.trim().length === 0
+                  ? "text-normal"
+                  : !checkNumbers(userCredentials.password)
+                  ? "text-red"
+                  : checkNumbers(userCredentials.password)
+                  ? "text-normal"
+                  : "text-normal"
+              }
+            >
+              Must contain one number
+            </div>
+          </div>
+
+          <div className="val-check">
+            <img
+              src={
+                userCredentials.password.trim().length === 0
+                  ? CheckIcon
+                  : !checkCapitalLetters(userCredentials.password)
+                  ? Warning
+                  : checkCapitalLetters(userCredentials.password)
+                  ? CheckIconGreen
+                  : CheckIcon
+              }
+              alt=""
+              className="error-icon"
+            />
+            <div
+              className={
+                userCredentials.password.trim().length === 0
+                  ? "text-normal"
+                  : !checkCapitalLetters(userCredentials.password)
+                  ? "text-red"
+                  : checkCapitalLetters(userCredentials.password)
+                  ? "text-normal"
+                  : "text-normal"
+              }
+            >
+              Must contain one uppercase letter
+            </div>
+          </div>
+
+          <div className="val-check">
+            <img
+              src={
+                userCredentials.password.trim().length === 0
+                  ? CheckIcon
+                  : !checkLowerCase(userCredentials.password)
+                  ? Warning
+                  : checkLowerCase(userCredentials.password)
+                  ? CheckIconGreen
+                  : CheckIcon
+              }
+              alt=""
+              className="error-icon"
+            />
+            <div
+              className={
+                userCredentials.password.trim().length === 0
+                  ? "text-normal"
+                  : !checkLowerCase(userCredentials.password)
+                  ? "text-red"
+                  : checkLowerCase(userCredentials.password)
+                  ? "text-normal"
+                  : "text-normal"
+              }
+            >
+              Must contain one lowercase letter
+            </div>
+          </div>
         </div>
 
         <div className="password-2">
@@ -146,27 +533,10 @@ const PersonalInfo = ({ handleNext, handleBack }) => {
             iconName="EyeOff"
             showIcon={true}
             placeholder=""
+            name="password2"
+            value={userCredentials.password2}
+            handleChange={handleInputChange}
           />
-        </div>
-
-        <div className="val-check">
-          <img src={CheckIcon} alt="" className="error-icon" />
-          <div className="text-normal">Must be at least 8 characters</div>
-        </div>
-
-        <div className="val-check">
-          <img src={CheckIcon} alt="" className="error-icon" />
-          <div className="text-normal">Must contain one special character</div>
-        </div>
-
-        <div className="val-check">
-          <img src={CheckIconGreen} alt="" className="error-icon" />
-          <div className="text-normal">Must contain one special character</div>
-        </div>
-
-        <div className="val-check">
-          <img src={Warning} alt="" className="error-icon" />
-          <div className="text-red">Must be at least 8 characters</div>
         </div>
 
         <div className="avatar-upload">
@@ -197,18 +567,42 @@ const PersonalInfo = ({ handleNext, handleBack }) => {
 
         <div className="upload-desc">PNG or JPG (max. 5MB)</div>
 
-        <div className="btn">
+        <div className="btn-sec">
           <div className="btn-bck">
-            <Button handleClick={handleBack} disable={false} type="back">
+            <Button handleClick={() => {}} disable={false} type="back">
               Back
             </Button>
           </div>
 
-          <div className="btn-continue">
-            <Button handleClick={handleNext} disable={false} type="continue">
-              Continue
-            </Button>
-          </div>
+          {checkNumbers(userCredentials.password) &&
+          checkLowerCase(userCredentials.password) &&
+          checkCapitalLetters(userCredentials.password) &&
+          checkSpecialCharacters(userCredentials.password) &&
+          userCredentials.firstName.trim().length > 0 &&
+          userCredentials.lastName.trim().length > 0 &&
+          userCredentials.credential.trim().length > 0 &&
+          userCredentials.resAddress.trim().length > 0 &&
+          userCredentials.ageGroup.trim().length > 0 &&
+          userCredentials.siteid.trim().length > 0 &&
+          userCredentials.idUpload.idType.trim().length > 0 &&
+          userCredentials.password.trim().length > 7 &&
+          userCredentials.password === userCredentials.password2 ? (
+            <div className="btn-continue">
+              <Button
+                handleClick={handleSubmit}
+                disable={false}
+                type="continue"
+              >
+                Continue
+              </Button>
+            </div>
+          ) : (
+            <div className="btn-continue">
+              <Button handleClick={() => {}} disable={true} type="continue">
+                Continue
+              </Button>
+            </div>
+          )}
         </div>
       </div>
     </div>

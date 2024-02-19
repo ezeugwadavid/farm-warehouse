@@ -39,13 +39,13 @@ $fontWeightNormal: 400;
     margin-bottom: 20px;
 }
 
-.phone-input {
+.phone-inpt {
     display: flex;
     justify-content: space-between;
 }
 
 .flag-cont {
-    width: 8%;
+    width: 10%;
     height: 90%;
     border: 1px solid $borderColor;
     padding: 5px 6px;
@@ -215,9 +215,10 @@ $fontWeightNormal: 400;
 
 .avatar {
     background-color: #F2F4F7;
-    padding: 10px;
     border-radius: 50%;
     margin-right: 15px;
+    width: 40px;
+    height: 40px;
 }
 
 .upload-icon {
@@ -250,7 +251,7 @@ $fontWeightNormal: 400;
     color: #475467;
 }
 
-.btn {
+.btn-sec {
     display: flex;
     margin-top: 20px;
 }
@@ -269,8 +270,55 @@ input[type="file"] {
 }
 
 
+.check-mark {
+    display: none;
+}
+
+.input-drop-down-cont {
+    border-radius: 8px;
+    border: 1px solid #EAECF0;
+    box-shadow: 0 0 2px 2px #EAECF0;
+    margin-top: 5px;
+    padding: 5px 5px;
+    z-index: 1;
+    max-height: 200px;
+    overflow-y: scroll;
+}
+
+::-webkit-scrollbar {
+    width: 7px;
+    background: #ffffff;
+}
+
+/* Handle */
+.input-drop-down-cont::-webkit-scrollbar-thumb {
+    background-color: #EAECF0;
+    border-radius: 8px;
+}
+
+.input-item {
+    display: flex;
+    justify-content: space-between;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.input-item:hover {
+    background-color: #F9FAFB;
+    border-radius: 6px;
+
+    .check-mark {
+        display: block;
+    }
+}
+
+
+
 @media screen and (max-width: 768px) {
-    age-gender {
+    .age-gender {
         margin-bottom: 20px;
         display: flex;
         justify-content: space-between;
@@ -291,7 +339,8 @@ input[type="file"] {
         padding: 10px 10px;
         margin-top: auto;
         margin-bottom: auto;
-        margin-right: 8px;
+        margin-right: 7px;
+        width: 15%;
     }
 
     .upload-box {
@@ -343,7 +392,7 @@ input[type="file"] {
 ;
 
 @media screen and (min-width: 768px) and (max-width: 1200px) {
-    age-gender {
+    .age-gender {
         margin-bottom: 20px;
         display: flex;
         justify-content: space-between;

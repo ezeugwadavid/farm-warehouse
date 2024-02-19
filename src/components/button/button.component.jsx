@@ -12,7 +12,7 @@ const Button = ({ children, handleClick, ...otherProps }) => {
   ) : (
     <div
       className={type === "continue" ? "green" : "white"}
-      onClick={handleClick}
+      onClick={() => handleClick()}
     >
       <div className="button-text"> {children} </div>
     </div>

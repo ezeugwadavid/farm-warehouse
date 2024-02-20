@@ -6,7 +6,6 @@ import StepInactive from "../../assets/stepper-inactive.svg";
 import AppIcon from "../../assets/app-logo.svg";
 import HomeIcon from "../../assets/home-icon.svg";
 import LeftImage from "../left-image/left-image.component";
-
 import "./create-account-component.styles.scss";
 import PersonalInfo from "../personal-info/personal-info.component";
 import BankDetails from "../bank-details/bank-details.component";

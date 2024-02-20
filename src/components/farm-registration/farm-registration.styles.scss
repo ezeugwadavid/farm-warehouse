@@ -238,11 +238,28 @@ $lineHeightNormal: 20px;
     }
 
 }
-@media screen and (max-width: 450px) {
+@media screen and (max-width: 500px) {
     
     .anothercrop-btn {
         width: 120px;
     }
 
+    .green-but{
+        width: 45% !important;
+    }
+
+    .btn-sections{
+     width: 100%;
+    }
+
+}
+@media screen and (max-width: 340px) { 
+    .green-but{
+        width: 45% !important;
+    }
+
+    .btn-sections{
+     width: 100%;
+    }
 }
 

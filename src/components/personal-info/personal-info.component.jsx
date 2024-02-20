@@ -1,7 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./personal-info.styles.scss";
-import NgFlag from "../../assets/ng.svg";
-import ArrowDownSm from "../../assets/arrow-down-sm.svg";
+
 import CheckIcon from "../../assets/check-icon.svg";
 import CheckIconGreen from "../../assets/check-icon-green.svg";
 import Warning from "../../assets/warning-icon.svg";
@@ -10,9 +9,11 @@ import UserIcon from "../../assets/user-icon.svg";
 import Input from "../input/input.component";
 import Button from "../button/button.component";
 import Check from "../../assets/check.svg";
+import PhoneInput from "react-phone-input-2";
+import "react-phone-input-2/lib/style.css";
 import PropTypes from "prop-types";
 
- //get user personal info component
+//get user personal info component
 const PersonalInfo = ({ handleNext }) => {
   const [selectedFile, setSelectedFile] = useState("");
   const [image, setImage] = useState(null);
@@ -22,6 +23,7 @@ const PersonalInfo = ({ handleNext }) => {
   const [idType, setIdType] = useState("");
   const [age, setAge] = useState("");
   const [site, setSite] = useState("");
+  const [phonenumber, setPhoneNumber] = useState("");
 
   const userField = {
     firstName: "",
@@ -31,12 +33,12 @@ const PersonalInfo = ({ handleNext }) => {
     password: "", // must have >= 8 char, at least 1 CAPS, 1 lowercase, 1 number and 1 special char
     password2: "", // must have >= 8 char, at least 1 CAPS, 1 lowercase, 1 number and 1 special char
     roleName: "Farmer",
-    gender: "male", // Male / Female
+    gender: "Male", // Male / Female
     resAddress: "",
     ageGroup: "",
     hasBankAccount: "",
     hasSmartphone: true,
-    profilePic: "",
+    profilePic: {},
     idUpload: {
       idType: "",
       url: "",
@@ -59,6 +61,11 @@ const PersonalInfo = ({ handleNext }) => {
   const handleIdType = (name) => {
     setIdType(name);
     setShowIdType((prevIdtype) => !prevIdtype);
+    const fileUrl = URL.createObjectURL(selectedFile);
+    setUserCredentials({
+      ...userCredentials,
+      idUpload: { idType: name, url: fileUrl },
+    });
   };
   const handleAge = (name) => {
     setAge(name);
@@ -68,6 +75,10 @@ const PersonalInfo = ({ handleNext }) => {
   const handleSite = (name) => {
     setSite(name);
     handleShowSite();
+  };
+
+  const handleSetPhoneNumber = (res) => {
+    setPhoneNumber(res);
   };
 
   const onFileChange = (e) => {
@@ -133,6 +144,10 @@ const PersonalInfo = ({ handleNext }) => {
     }
   };
 
+  useEffect(() => {
+    setUserCredentials({ ...userCredentials, credential: `+${phonenumber}` });
+  }, [phonenumber]);
+
   return (
     <div className="personal-info">
       <div className="header-desc">Personal Information</div>
@@ -144,6 +159,7 @@ const PersonalInfo = ({ handleNext }) => {
             name="firstName"
             value={userCredentials.firstName}
             handleChange={handleInputChange}
+            handleClick={() => {}}
           />
         </div>
 
@@ -153,6 +169,7 @@ const PersonalInfo = ({ handleNext }) => {
             name="lastName"
             value={userCredentials.lastName}
             handleChange={handleInputChange}
+            handleClick={() => {}}
           />
         </div>
       </div>
@@ -161,18 +178,14 @@ const PersonalInfo = ({ handleNext }) => {
         <div className="input-label">Phone Number*</div>
 
         <div className="phone-inpt">
-          <div className="flag-cont">
-            <img className="ng-flag" src={NgFlag} alt="" />
-            <img className="arr-dwn" src={ArrowDownSm} alt="" />
-          </div>
-
-          <div className="mobile">
-            <Input
-              name="credential"
-              value={userCredentials.credential}
-              handleChange={handleInputChange}
-            />
-          </div>
+          <PhoneInput
+            placeholder=""
+            country={"ng"}
+            value={phonenumber}
+            onChange={handleSetPhoneNumber}
+            inputClass={"mobile"}
+            buttonClass={"flag-cont"}
+          />
         </div>
 
         <div className="email-input">
@@ -183,6 +196,7 @@ const PersonalInfo = ({ handleNext }) => {
             name="email"
             value={userCredentials.email}
             handleChange={handleInputChange}
+            handleClick={() => {}}
           />
         </div>
 
@@ -202,23 +216,9 @@ const PersonalInfo = ({ handleNext }) => {
               <div className="input-drop-down-cont">
                 <div
                   className="input-item"
-                  onClick={() => handleAge("18 - 25")}
+                  onClick={() => handleAge("26 - 35")}
                 >
-                  <div className="id-name">18 - 25</div>
-                  <img className="check-mark" src={Check} alt="" />
-                </div>
-                <div
-                  className="input-item"
-                  onClick={() => handleAge("26 - 30")}
-                >
-                  <div className="id-name">26 - 30</div>
-                  <img className="check-mark" src={Check} alt="" />
-                </div>
-                <div
-                  className="input-item"
-                  onClick={() => handleAge("31 - 35")}
-                >
-                  <div className="id-name">31 - 35</div>
+                  <div className="id-name">26 - 35</div>
                   <img className="check-mark" src={Check} alt="" />
                 </div>
               </div>
@@ -234,9 +234,10 @@ const PersonalInfo = ({ handleNext }) => {
                 <Input
                   type="radio"
                   name="gender"
-                  value="male"
+                  value="Male"
                   handleChange={handleInputChange}
-                  checked={userCredentials.gender === "male"}
+                  checked={userCredentials.gender === "Male"}
+                  handleClick={() => {}}
                 />
                 <div className="male-text">Male</div>
               </div>
@@ -245,9 +246,10 @@ const PersonalInfo = ({ handleNext }) => {
                 <Input
                   type="radio"
                   name="gender"
-                  value="female"
+                  value="Female"
                   handleChange={handleInputChange}
-                  checked={userCredentials.gender === "female"}
+                  checked={userCredentials.gender === "Female"}
+                  handleClick={() => {}}
                 />
                 <div className="female-text">Female</div>
               </div>
@@ -262,6 +264,7 @@ const PersonalInfo = ({ handleNext }) => {
             name="resAddress"
             value={userCredentials.resAddress}
             handleChange={handleInputChange}
+            handleClick={() => {}}
           />
         </div>
 
@@ -343,6 +346,7 @@ const PersonalInfo = ({ handleNext }) => {
             name="siteid"
             value={userCredentials.siteid}
             handleChange={handleInputChange}
+            handleClick={() => {}}
           />
         </div>
 
@@ -376,6 +380,7 @@ const PersonalInfo = ({ handleNext }) => {
             name="password"
             value={userCredentials.password}
             handleChange={handleInputChange}
+            handleClick={() => {}}
           />
 
           {/* show password guides dynamically */}
@@ -536,6 +541,7 @@ const PersonalInfo = ({ handleNext }) => {
             name="password2"
             value={userCredentials.password2}
             handleChange={handleInputChange}
+            handleClick={() => {}}
           />
         </div>
 

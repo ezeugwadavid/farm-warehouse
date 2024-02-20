@@ -31,7 +31,7 @@ const AddedFarm = () => {
     const endOffset = itemOffset + itemsPerPage;
     setCurrentItems(farms.slice(itemOffset, endOffset));
     setPageCount(Math.ceil(farms.length / itemsPerPage));
-  }, [itemOffset, itemsPerPage, farms]);
+  }, [itemOffset, itemsPerPage, getFarms]);
 
   return (
     farms &&

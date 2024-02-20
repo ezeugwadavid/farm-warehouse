@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./bank-details.styles.scss";
 import Check from "../../assets/check.svg";
 import Input from "../input/input.component";
@@ -10,14 +10,14 @@ const BankDetails = ({ handleNext, handleBack }) => {
   const [showDropDown, setShowDropDown] = useState(false);
   const [bankName, setBankName] = useState("");
 
-  const bankDetails = {
+  const bankDetail = {
     hasBankAccount: "true",
     hasSmartphone: "true",
     accountnumber: "",
     bankname: "",
   };
 
-  const [bankCredentials, setBankCredentials] = useState(bankDetails);
+  const [bankCredentials, setBankCredentials] = useState(bankDetail);
 
   const handleBankDetailsChange = (e) => {
     const { name, value } = e.target;
@@ -58,6 +58,7 @@ const BankDetails = ({ handleNext, handleBack }) => {
                 name="hasSmartphone"
                 handleChange={handleBankDetailsChange}
                 checked={bankCredentials.hasSmartphone === "true"}
+                handleClick={() => {}}
               />
             </div>
 
@@ -72,6 +73,7 @@ const BankDetails = ({ handleNext, handleBack }) => {
                 name="hasSmartphone"
                 handleChange={handleBankDetailsChange}
                 checked={bankCredentials.hasSmartphone === "false"}
+                handleClick={() => {}}
               />
             </div>
 
@@ -93,6 +95,7 @@ const BankDetails = ({ handleNext, handleBack }) => {
                 value="true"
                 handleChange={handleBankDetailsChange}
                 checked={bankCredentials.hasBankAccount === "true"}
+                handleClick={() => {}}
               />
             </div>
 
@@ -107,6 +110,7 @@ const BankDetails = ({ handleNext, handleBack }) => {
                 value="false"
                 handleChange={handleBankDetailsChange}
                 checked={bankCredentials.hasBankAccount === "false"}
+                handleClick={() => {}}
               />
             </div>
 
@@ -180,6 +184,9 @@ const BankDetails = ({ handleNext, handleBack }) => {
               placeholder="Enter account number"
               name="accountnumber"
               handleChange={handleBankDetailsChange}
+              value={bankCredentials.accountnumber}
+              handleClick={() => {}}
+              type="number"
             />
             {/* <div className="account-name-verify-text">
           Account Name: Godwin Precious

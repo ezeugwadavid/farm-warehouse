@@ -158,3 +158,15 @@ $lineHeightNormal: 20px;
         }
     
     }
+    @media screen and (min-width: 768px) and (max-width: 1000px) {
+    
+        .white-btn {
+            margin-right: 5% !important;
+            width: 70% !important;
+        }
+        
+        .green-btn {
+            width: 70% !important;
+        }
+    
+    }

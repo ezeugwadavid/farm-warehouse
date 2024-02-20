@@ -227,6 +227,17 @@ $lineHeightNormal: 20px;
     }
 
 }
+@media screen and (min-width: 768px)and (max-width: 1300px) {
+    
+    .green-but{
+        width: 45% !important;
+    }
+
+    .btn-sections{
+     width: 100%;
+    }
+
+}
 @media screen and (max-width: 450px) {
     
     .anothercrop-btn {

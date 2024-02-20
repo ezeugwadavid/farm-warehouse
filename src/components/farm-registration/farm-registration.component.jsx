@@ -18,8 +18,8 @@ const FarmRegistration = ({ handleBack }) => {
   const [showEndMonth, setShowEndMonth] = useState(false);
 
   const [cropType, setCropType] = useState("");
-  const [startMonthType, setStartMonthType] = useState("");
-  const [endMonthType, setEndMonthType] = useState("");
+  const [farmSeasonStart, setFarmSeasonStart] = useState("");
+  const [farmSeasonEnd, setFarmSeasonEnd] = useState("");
 
   const handleShowCropType = () => {
     setShowCrops((prevCrop) => !prevCrop);
@@ -37,11 +37,11 @@ const FarmRegistration = ({ handleBack }) => {
     handleShowCropType();
   };
   const handleStartMonth = (name) => {
-    setStartMonthType(name);
+    setFarmSeasonStart(name);
     handleShowStartMonthType();
   };
   const handleEndMonth = (name) => {
-    setEndMonthType(name);
+    setFarmSeasonEnd(name);
     handleShowEndMonthType();
   };
 
@@ -52,9 +52,9 @@ const FarmRegistration = ({ handleBack }) => {
   };
 
   const cropField = {
-    cropname: cropType,
-    startmonth: startMonthType,
-    endmonth: endMonthType,
+    cropId: cropType,
+    farmSeasonStart: farmSeasonStart,
+    farmSeasonEnd: farmSeasonEnd,
   };
 
   const [farmDetails, setFarmDetails] = useState(farmField);
@@ -70,8 +70,8 @@ const FarmRegistration = ({ handleBack }) => {
     setShow(false);
     const emptyCrop = {
       cropname: "",
-      startmonth: "",
-      endmonth: "",
+      farmSeasonStart: "",
+      farmSeasonEnd: "",
     };
     const emptyField = {
       farmname: "",
@@ -102,8 +102,8 @@ const FarmRegistration = ({ handleBack }) => {
     if (validatedCropFieldArray.length === 3) {
       setCropInputs([...cropInputs, cropField]);
       setCropType("");
-      setStartMonthType("");
-      setEndMonthType("");
+      setFarmSeasonStart("");
+      setFarmSeasonEnd("");
     }
     setShowAddFarmInput((showAddFarmInput) => !showAddFarmInput);
   };
@@ -161,7 +161,7 @@ const FarmRegistration = ({ handleBack }) => {
 
       <div className="farm-reg-header">Farm Registration</div>
 
-      {/* added farm container shows after farm is being added */}
+      {/* added farm component shows after farm is being added */}
       <AddedFarm />
       {/* new farm form */}
       <div className="register-input-group">
@@ -174,6 +174,7 @@ const FarmRegistration = ({ handleBack }) => {
           value={farmDetails.farmname}
           handleChange={handleChange}
           error={hasError.farmname.length > 1 ? true : false}
+          handleClick={() => {}}
         />
         {hasError.farmname.length > 0 ? (
           <div className="account-name-verify-text-error">
@@ -198,6 +199,8 @@ const FarmRegistration = ({ handleBack }) => {
               name="longitude"
               value={farmDetails.longitude}
               handleChange={handleChange}
+              handleClick={() => {}}
+              type="number"
             />
           </div>
           <div className="latitude-right">
@@ -208,6 +211,8 @@ const FarmRegistration = ({ handleBack }) => {
               name="latitude"
               value={farmDetails.latitude}
               handleChange={handleChange}
+              handleClick={() => {}}
+              type="number"
             />
           </div>
         </div>
@@ -255,7 +260,8 @@ const FarmRegistration = ({ handleBack }) => {
                     showIcon={true}
                     iconName="DownArrow"
                     placeholder="Select crop"
-                    value={detail.cropname}
+                    value={detail.cropId}
+                    handleClick={() => {}}
                   />
                 </div>
 
@@ -267,7 +273,8 @@ const FarmRegistration = ({ handleBack }) => {
                       showIcon={true}
                       iconName="DownArrow"
                       placeholder="Select month"
-                      value={detail.startmonth}
+                      value={detail.farmSeasonStart}
+                      handleClick={() => {}}
                     />
                   </div>
 
@@ -278,7 +285,8 @@ const FarmRegistration = ({ handleBack }) => {
                       showIcon={true}
                       iconName="DownArrow"
                       placeholder="Select month"
-                      value={detail.endmonth}
+                      value={detail.farmSeasonEnd}
+                      handleClick={() => {}}
                     />
                   </div>
                 </div>
@@ -339,28 +347,28 @@ const FarmRegistration = ({ handleBack }) => {
                 showIcon={true}
                 iconName="DownArrow"
                 placeholder="Select month"
-                value={startMonthType}
+                value={farmSeasonStart}
                 handleClick={handleShowStartMonthType}
               />
               {showStartMonth ? (
                 <div className="input-drop-down-cont">
                   <div
                     className="input-item"
-                    onClick={() => handleStartMonth("January")}
+                    onClick={() => handleStartMonth("012024")}
                   >
                     <div className="id-name">January</div>
                     <img className="check-mark" src={Check} alt="" />
                   </div>
                   <div
                     className="input-item"
-                    onClick={() => handleStartMonth("Febuary")}
+                    onClick={() => handleStartMonth("022024")}
                   >
                     <div className="id-name">Febuary</div>
                     <img className="check-mark" src={Check} alt="" />
                   </div>
                   <div
                     className="input-item"
-                    onClick={() => handleStartMonth("March")}
+                    onClick={() => handleStartMonth("032024")}
                   >
                     <div className="id-name">March</div>
                     <img className="check-mark" src={Check} alt="" />
@@ -378,28 +386,28 @@ const FarmRegistration = ({ handleBack }) => {
                 showIcon={true}
                 iconName="DownArrow"
                 placeholder="Select month"
-                value={endMonthType}
+                value={farmSeasonEnd}
                 handleClick={handleShowEndMonthType}
               />
               {showEndMonth ? (
                 <div className="input-drop-down-cont">
                   <div
                     className="input-item"
-                    onClick={() => handleEndMonth("April")}
+                    onClick={() => handleEndMonth("042024")}
                   >
                     <div className="id-name">April</div>
                     <img className="check-mark" src={Check} alt="" />
                   </div>
                   <div
                     className="input-item"
-                    onClick={() => handleEndMonth("May")}
+                    onClick={() => handleEndMonth("052024")}
                   >
                     <div className="id-name">May</div>
                     <img className="check-mark" src={Check} alt="" />
                   </div>
                   <div
                     className="input-item"
-                    onClick={() => handleEndMonth("June")}
+                    onClick={() => handleEndMonth("062024")}
                   >
                     <div className="id-name">June</div>
                     <img className="check-mark" src={Check} alt="" />
@@ -479,7 +487,7 @@ const FarmRegistration = ({ handleBack }) => {
           </div>
         </div>
       ) : (
-        <div className="btn-section">
+        <div className="btn-sections">
           <div className="white-but">
             <Button disable={false} handleClick={handleBack} type="back">
               Back
